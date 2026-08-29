@@ -1,0 +1,2239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+>
+
+<title>DexFans — New Build Coming Soon</title>
+
+<meta
+  name="description"
+  content="DexFans — New build coming soon."
+>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  background: #030305;
+  color: #fff;
+
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  touch-action: none;
+}
+
+body {
+  position: relative;
+}
+
+
+/* =========================================================
+   BACKGROUND
+========================================================= */
+
+.background {
+  position: fixed;
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 20, 105, 0.13),
+      transparent 32%
+    ),
+
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(110, 30, 255, 0.12),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255, 0, 90, 0.08),
+      transparent 28%
+    ),
+
+    #030305;
+}
+
+
+/* =========================================================
+   MOVING GRID
+========================================================= */
+
+.grid {
+  position: absolute;
+
+  width: 220%;
+  height: 220%;
+
+  left: -60%;
+  top: -35%;
+
+  background-image:
+
+    linear-gradient(
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px
+    ),
+
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  transform:
+    perspective(700px)
+    rotateX(64deg);
+
+  animation:
+    gridMove 8s linear infinite;
+}
+
+@keyframes gridMove {
+
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 55px;
+  }
+
+}
+
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+.glow {
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(80px);
+
+  pointer-events: none;
+}
+
+.glow.one {
+
+  width: 280px;
+  height: 280px;
+
+  left: -100px;
+  top: 25%;
+
+  background: #ff176d;
+
+  opacity: 0.18;
+
+  animation:
+    floatOne 9s ease-in-out infinite;
+}
+
+.glow.two {
+
+  width: 350px;
+  height: 350px;
+
+  right: -130px;
+  bottom: -100px;
+
+  background: #7625ff;
+
+  opacity: 0.15;
+
+  animation:
+    floatTwo 11s ease-in-out infinite;
+}
+
+.glow.three {
+
+  width: 180px;
+  height: 180px;
+
+  right: 15%;
+  top: 10%;
+
+  background: #ff0055;
+
+  opacity: 0.10;
+
+  animation:
+    floatThree 7s ease-in-out infinite;
+}
+
+@keyframes floatOne {
+
+  0%,
+  100% {
+    transform: translate(0,0);
+  }
+
+  50% {
+    transform: translate(80px,-50px);
+  }
+
+}
+
+@keyframes floatTwo {
+
+  0%,
+  100% {
+    transform: translate(0,0);
+  }
+
+  50% {
+    transform: translate(-70px,-80px);
+  }
+
+}
+
+@keyframes floatThree {
+
+  0%,
+  100% {
+    transform:
+      translate(0,0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translate(-50px,80px)
+      scale(1.2);
+  }
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+header {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 82px;
+
+  padding:
+    0 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  z-index: 50;
+
+  pointer-events: none;
+}
+
+.logo {
+
+  font-size: 24px;
+
+  font-weight: 900;
+
+  letter-spacing: -1.5px;
+}
+
+.logo span {
+  color: #ff176d;
+}
+
+.build {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255,255,255,.5);
+}
+
+.build-dot {
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #ff176d;
+
+  box-shadow:
+    0 0 8px #ff176d,
+    0 0 20px #ff176d;
+
+  animation:
+    pulse 1.3s infinite;
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: .3;
+    transform: scale(.65);
+  }
+
+}
+
+
+/* =========================================================
+   GAME AREA
+========================================================= */
+
+#game {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 10;
+
+}
+
+
+/* =========================================================
+   MAIN MESSAGE
+========================================================= */
+
+.message {
+
+  position: fixed;
+
+  top: 105px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  width: 90%;
+
+  text-align: center;
+
+  z-index: 30;
+
+  pointer-events: none;
+}
+
+.message h1 {
+
+  font-size:
+    clamp(38px, 8vw, 78px);
+
+  line-height: .9;
+
+  font-weight: 900;
+
+  letter-spacing: -4px;
+
+  background:
+
+    linear-gradient(
+      110deg,
+      #ffffff,
+      #ff4d91,
+      #ff176d,
+      #a337ff
+    );
+
+  background-size: 250% auto;
+
+  -webkit-background-clip: text;
+
+  background-clip: text;
+
+  color: transparent;
+
+  animation:
+    gradientMove 5s ease infinite;
+}
+
+@keyframes gradientMove {
+
+  0%,
+  100% {
+    background-position: 0%;
+  }
+
+  50% {
+    background-position: 100%;
+  }
+
+}
+
+.message p {
+
+  margin-top: 13px;
+
+  font-size: 10px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 3px;
+
+  color:
+    rgba(255,255,255,.35);
+}
+
+
+/* =========================================================
+   SCORE
+========================================================= */
+
+.score {
+
+  position: fixed;
+
+  top: 28px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 40;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+.score-label {
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255,255,255,.3);
+}
+
+.score-number {
+
+  margin-top: 2px;
+
+  font-size: 23px;
+
+  font-weight: 900;
+
+  letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   PLAYER
+========================================================= */
+
+.player {
+
+  position: absolute;
+
+  width: 62px;
+  height: 62px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+
+    radial-gradient(
+      circle at 35% 30%,
+      #ff8ab6,
+      #ff176d 45%,
+      #8d0b42
+    );
+
+  border:
+    2px solid
+    rgba(255,255,255,.7);
+
+  box-shadow:
+
+    0 0 15px
+      rgba(255,23,109,.9),
+
+    0 0 45px
+      rgba(255,23,109,.35);
+
+  z-index: 20;
+
+  will-change:
+    left,
+    top;
+}
+
+.player::after {
+
+  content: "◆";
+
+  font-size: 18px;
+
+  color: white;
+
+  text-shadow:
+    0 0 12px white;
+}
+
+
+/* =========================================================
+   COLLECTIBLES
+========================================================= */
+
+.collectible {
+
+  position: absolute;
+
+  width: 43px;
+  height: 43px;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(0,0,0,.7);
+
+  border:
+    2px solid
+    rgba(255,255,255,.55);
+
+  box-shadow:
+
+    0 0 12px
+      rgba(255,30,120,.9),
+
+    0 0 35px
+      rgba(255,30,120,.3);
+
+  z-index: 15;
+
+  animation:
+    spin 3s linear infinite;
+
+  will-change:
+    top;
+}
+
+.collectible img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.collectible.sol {
+
+  box-shadow:
+
+    0 0 12px
+      rgba(153,69,255,.9),
+
+    0 0 35px
+      rgba(20,241,149,.3);
+}
+
+.collectible.sol img {
+
+  object-fit: contain;
+
+  padding: 7px;
+}
+
+@keyframes spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+
+/* =========================================================
+   ENEMIES
+========================================================= */
+
+.enemy {
+
+  position: absolute;
+
+  width: 19px;
+  height: 19px;
+
+  border-radius: 4px;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      #ff004f,
+      #ff5c9b
+    );
+
+  box-shadow:
+
+    0 0 12px #ff004f,
+
+    0 0 28px
+      rgba(255,0,79,.35);
+
+  transform:
+    rotate(45deg);
+
+  z-index: 14;
+
+  will-change:
+    top;
+}
+
+
+/* =========================================================
+   COMBO
+========================================================= */
+
+.combo {
+
+  position: fixed;
+
+  left: 50%;
+  top: 55%;
+
+  transform:
+    translate(-50%,-50%)
+    scale(.6);
+
+  opacity: 0;
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+  color: white;
+
+  text-shadow:
+    0 0 20px #ff176d;
+
+  z-index: 60;
+
+  pointer-events: none;
+}
+
+.combo.show {
+
+  animation:
+    comboAnimation .65s ease forwards;
+}
+
+@keyframes comboAnimation {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      translate(-50%,-50%)
+      scale(.6);
+  }
+
+  30% {
+    opacity: 1;
+
+    transform:
+      translate(-50%,-60%)
+      scale(1.15);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform:
+      translate(-50%,-90%)
+      scale(1);
+  }
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+.gameover {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100;
+
+  display: none;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  background:
+    rgba(0,0,0,.78);
+
+  backdrop-filter:
+    blur(18px);
+}
+
+.gameover.active {
+
+  display: flex;
+
+  animation:
+    fadeIn .35s ease;
+}
+
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+.gameover-box {
+
+  width:
+    min(400px,88vw);
+
+  padding:
+    40px 25px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius: 25px;
+
+  background:
+    rgba(15,15,20,.82);
+
+  box-shadow:
+    0 25px 80px
+    rgba(0,0,0,.55);
+
+  animation:
+    boxIn .45s ease;
+}
+
+@keyframes boxIn {
+
+  from {
+    transform:
+      scale(.9)
+      translateY(15px);
+
+    opacity: 0;
+  }
+
+  to {
+    transform:
+      scale(1)
+      translateY(0);
+
+    opacity: 1;
+  }
+
+}
+
+.gameover-tag {
+
+  font-size: 8px;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  color: #ff176d;
+
+  margin-bottom: 8px;
+}
+
+.gameover h2 {
+
+  font-size: 42px;
+
+  font-weight: 900;
+
+  letter-spacing: -2px;
+}
+
+.final-score {
+
+  margin:
+    12px 0 25px;
+
+  color:
+    rgba(255,255,255,.5);
+
+  font-size: 13px;
+}
+
+.final-score strong {
+
+  color: white;
+
+  font-size: 17px;
+}
+
+
+/* =========================================================
+   GAME OVER BUTTONS
+========================================================= */
+
+.gameover-buttons {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  width: 100%;
+}
+
+
+/* PLAY AGAIN */
+
+.restart {
+
+  width: 100%;
+
+  min-height: 52px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      #ff176d,
+      #9b36ff
+    );
+
+  color: white;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  cursor: pointer;
+
+  box-shadow:
+
+    0 10px 35px
+    rgba(255,23,109,.18);
+
+  transition:
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+.restart:hover {
+
+  transform:
+    translateY(-2px);
+
+  box-shadow:
+
+    0 15px 45px
+    rgba(255,23,109,.28);
+}
+
+
+/* BUY GOJI */
+
+.buy-goji {
+
+  width: 100%;
+
+  min-height: 52px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.12);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color: white;
+
+  font-size: 11px;
+
+  font-weight: 900;
+
+  letter-spacing: 1.5px;
+
+  text-decoration: none;
+
+  cursor: pointer;
+
+  transition:
+    transform .25s ease,
+    background .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
+
+.buy-goji:hover {
+
+  transform:
+    translateY(-2px);
+
+  border-color:
+    rgba(255,23,109,.5);
+
+  background:
+    rgba(255,23,109,.10);
+
+  box-shadow:
+
+    0 10px 35px
+    rgba(255,23,109,.15);
+}
+
+.buy-goji img {
+
+  width: 26px;
+  height: 26px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+
+  box-shadow:
+
+    0 0 12px
+    rgba(255,23,109,.45);
+}
+
+.buy-goji span {
+
+  font-size: 15px;
+
+  opacity: .6;
+}
+
+
+/* =========================================================
+   PARTNERS
+========================================================= */
+
+.partners {
+
+  position: fixed;
+
+  bottom: 27px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  z-index: 40;
+
+  pointer-events: none;
+}
+
+.partner {
+
+  position: relative;
+
+  width: 46px;
+  height: 46px;
+
+  padding: 3px;
+
+  border-radius: 50%;
+
+  background:
+
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.4),
+      rgba(255,255,255,.05)
+    );
+
+  box-shadow:
+
+    0 0 25px
+    rgba(255,255,255,.08);
+}
+
+.partner-inner {
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  overflow: hidden;
+
+  background: #08080c;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.partner img {
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.partner.solana img {
+
+  object-fit: contain;
+
+  padding: 8px;
+}
+
+.partner-label {
+
+  position: absolute;
+
+  bottom: -17px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  white-space: nowrap;
+
+  font-size: 7px;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+
+  color:
+    rgba(255,255,255,.25);
+}
+
+
+/* =========================================================
+   INSTRUCTIONS
+========================================================= */
+
+.instructions {
+
+  position: fixed;
+
+  bottom: 84px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  z-index: 40;
+
+  color:
+    rgba(255,255,255,.25);
+
+  font-size: 8px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 2px;
+
+  text-align: center;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  header {
+
+    height: 72px;
+
+    padding:
+      0 18px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .build {
+    font-size: 8px;
+  }
+
+  .message {
+    top: 92px;
+  }
+
+  .message h1 {
+
+    font-size:
+      clamp(38px, 12vw, 65px);
+
+    letter-spacing: -3px;
+  }
+
+  .message p {
+    font-size: 8px;
+  }
+
+  .player {
+
+    width: 58px;
+    height: 58px;
+  }
+
+  .instructions {
+    bottom: 78px;
+  }
+
+  .partners {
+    bottom: 18px;
+  }
+
+  .partner {
+
+    width: 42px;
+    height: 42px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREENS
+========================================================= */
+
+@media (max-height: 650px) {
+
+  .message {
+    top: 82px;
+  }
+
+  .message h1 {
+    font-size: 35px;
+  }
+
+  .message p {
+    margin-top: 8px;
+  }
+
+  .instructions {
+    bottom: 72px;
+  }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =======================================================
+     BACKGROUND
+======================================================= -->
+
+<div class="background">
+
+  <div class="grid"></div>
+
+  <div class="glow one"></div>
+
+  <div class="glow two"></div>
+
+  <div class="glow three"></div>
+
+</div>
+
+
+<!-- =======================================================
+     HEADER
+======================================================= -->
+
+<header>
+
+  <div class="logo">
+    DEX<span>FANS</span>
+  </div>
+
+  <div class="build">
+
+    <span class="build-dot"></span>
+
+    New Build
+
+  </div>
+
+</header>
+
+
+<!-- =======================================================
+     SCORE
+======================================================= -->
+
+<div class="score">
+
+  <div class="score-label">
+    Score
+  </div>
+
+  <div
+    class="score-number"
+    id="score"
+  >
+    000000
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     MAIN MESSAGE
+======================================================= -->
+
+<div class="message">
+
+  <h1>
+    NEW BUILD<br>
+    COMING SOON
+  </h1>
+
+  <p>
+    Keep playing while we build
+  </p>
+
+</div>
+
+
+<!-- =======================================================
+     GAME
+======================================================= -->
+
+<div id="game"></div>
+
+
+<!-- =======================================================
+     COMBO
+======================================================= -->
+
+<div
+  class="combo"
+  id="combo"
+>
+  +100
+</div>
+
+
+<!-- =======================================================
+     INSTRUCTIONS
+======================================================= -->
+
+<div class="instructions">
+
+  Touch & drag to move
+
+</div>
+
+
+<!-- =======================================================
+     GOJI + SOLANA
+======================================================= -->
+
+<div class="partners">
+
+  <!-- GOJIPOWER -->
+
+  <div class="partner">
+
+    <div class="partner-inner">
+
+      <img
+        src="https://gojipower.xyz/goji-logo.png"
+        alt="GOJIPOWER"
+      >
+
+    </div>
+
+    <div class="partner-label">
+      GOJIPOWER
+    </div>
+
+  </div>
+
+
+  <!-- SOLANA -->
+
+  <div class="partner solana">
+
+    <div class="partner-inner">
+
+      <img
+        src="https://solana.com/src/img/branding/solanaLogoMark.png"
+        alt="Solana"
+      >
+
+    </div>
+
+    <div class="partner-label">
+      SOLANA
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- =======================================================
+     GAME OVER
+======================================================= -->
+
+<div
+  class="gameover"
+  id="gameover"
+>
+
+  <div class="gameover-box">
+
+    <div class="gameover-tag">
+      Run Ended
+    </div>
+
+    <h2>
+      GAME OVER
+    </h2>
+
+    <div class="final-score">
+
+      Score:
+      <strong id="finalScore">
+        0
+      </strong>
+
+    </div>
+
+
+    <div class="gameover-buttons">
+
+
+      <!-- PLAY AGAIN -->
+
+      <button
+        class="restart"
+        onclick="restartGame()"
+      >
+
+        PLAY AGAIN
+
+      </button>
+
+
+      <!-- BUY GOJIPOWER -->
+
+      <a
+        class="buy-goji"
+        href="https://gmgn.ai/sol/token/DYCLLejhtfyCDUY8ygBx7YuwfcdaRzLo7nHHVGdApump"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+
+        <img
+          src="https://gojipower.xyz/goji-logo.png"
+          alt="GOJIPOWER"
+        >
+
+        BUY GOJIPOWER
+
+        <span>
+          ↗
+        </span>
+
+      </a>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   GAME VARIABLES
+========================================================= */
+
+const game =
+  document.getElementById("game");
+
+const scoreElement =
+  document.getElementById("score");
+
+const comboElement =
+  document.getElementById("combo");
+
+const gameover =
+  document.getElementById("gameover");
+
+const finalScore =
+  document.getElementById("finalScore");
+
+
+let player;
+
+let playerX;
+
+let playerY;
+
+let score = 0;
+
+let speed = 2;
+
+let running = true;
+
+let objects = [];
+
+let lastTime = 0;
+
+let spawnTimer = 0;
+
+let enemyTimer = 0;
+
+let combo = 0;
+
+
+/* =========================================================
+   CREATE PLAYER
+========================================================= */
+
+function createPlayer() {
+
+  player =
+    document.createElement("div");
+
+  player.className =
+    "player";
+
+  game.appendChild(player);
+
+
+  playerX =
+    window.innerWidth / 2 - 31;
+
+  playerY =
+    window.innerHeight - 165;
+
+
+  updatePlayer();
+
+}
+
+
+/* =========================================================
+   UPDATE PLAYER
+========================================================= */
+
+function updatePlayer() {
+
+  player.style.left =
+    playerX + "px";
+
+  player.style.top =
+    playerY + "px";
+
+}
+
+
+/* =========================================================
+   MOVE PLAYER
+========================================================= */
+
+function movePlayer(x, y) {
+
+  const half =
+    player.offsetWidth / 2;
+
+
+  playerX =
+    Math.max(
+      5,
+      Math.min(
+        window.innerWidth -
+          player.offsetWidth -
+          5,
+
+        x - half
+      )
+    );
+
+
+  playerY =
+    Math.max(
+      180,
+
+      Math.min(
+        window.innerHeight -
+          player.offsetHeight -
+          70,
+
+        y - half
+      )
+    );
+
+
+  updatePlayer();
+
+}
+
+
+/* =========================================================
+   TOUCH CONTROL
+========================================================= */
+
+document.addEventListener(
+
+  "touchmove",
+
+  function(e) {
+
+    if (!running)
+      return;
+
+    e.preventDefault();
+
+    const touch =
+      e.touches[0];
+
+    movePlayer(
+      touch.clientX,
+      touch.clientY
+    );
+
+  },
+
+  {
+    passive: false
+  }
+
+);
+
+
+/* =========================================================
+   MOUSE CONTROL
+========================================================= */
+
+document.addEventListener(
+
+  "mousemove",
+
+  function(e) {
+
+    if (!running)
+      return;
+
+    movePlayer(
+      e.clientX,
+      e.clientY
+    );
+
+  }
+
+);
+
+
+/* =========================================================
+   CREATE COLLECTIBLE
+========================================================= */
+
+function createCollectible(type) {
+
+  const item =
+    document.createElement("div");
+
+
+  item.className =
+    "collectible " +
+    (
+      type === "sol"
+        ? "sol"
+        : ""
+    );
+
+
+  const img =
+    document.createElement("img");
+
+
+  if (type === "sol") {
+
+    img.src =
+      "https://solana.com/src/img/branding/solanaLogoMark.png";
+
+    img.alt =
+      "Solana";
+
+  }
+
+  else {
+
+    img.src =
+      "https://gojipower.xyz/goji-logo.png";
+
+    img.alt =
+      "GOJIPOWER";
+
+  }
+
+
+  item.appendChild(img);
+
+
+  const maxX =
+    Math.max(
+      10,
+      window.innerWidth - 53
+    );
+
+
+  item.style.left =
+    Math.random() *
+    maxX +
+    "px";
+
+
+  item.style.top =
+    "-60px";
+
+
+  game.appendChild(item);
+
+
+  objects.push({
+
+    element: item,
+
+    type:
+      "collectible",
+
+    y:
+      -60,
+
+    value:
+      type === "sol"
+        ? 250
+        : 100
+
+  });
+
+}
+
+
+/* =========================================================
+   CREATE ENEMY
+========================================================= */
+
+function createEnemy() {
+
+  const enemy =
+    document.createElement("div");
+
+
+  enemy.className =
+    "enemy";
+
+
+  enemy.style.left =
+    Math.random() *
+    Math.max(
+      10,
+      window.innerWidth - 30
+    ) +
+    "px";
+
+
+  enemy.style.top =
+    "-30px";
+
+
+  game.appendChild(enemy);
+
+
+  objects.push({
+
+    element:
+      enemy,
+
+    type:
+      "enemy",
+
+    y:
+      -30,
+
+    value:
+      0
+
+  });
+
+}
+
+
+/* =========================================================
+   COLLISION
+========================================================= */
+
+function collision(a, b) {
+
+  const ar =
+    a.getBoundingClientRect();
+
+  const br =
+    b.getBoundingClientRect();
+
+
+  const padding = 8;
+
+
+  return !(
+    ar.right - padding <
+      br.left +
+
+      padding ||
+
+    ar.left + padding >
+      br.right -
+
+      padding ||
+
+    ar.bottom - padding <
+      br.top +
+
+      padding ||
+
+    ar.top + padding >
+      br.bottom -
+
+      padding
+  );
+
+}
+
+
+/* =========================================================
+   ADD SCORE
+========================================================= */
+
+function addScore(amount) {
+
+  score += amount;
+
+
+  scoreElement.textContent =
+    String(score)
+      .padStart(6, "0");
+
+
+  combo++;
+
+
+  comboElement.textContent =
+    "+" + amount;
+
+
+  comboElement.classList.remove(
+    "show"
+  );
+
+
+  void comboElement.offsetWidth;
+
+
+  comboElement.classList.add(
+    "show"
+  );
+
+
+  /*
+     Difficulty continuously increases.
+     There is no level cap.
+  */
+
+  speed =
+    Math.min(
+      11,
+      2 + score / 1800
+    );
+
+}
+
+
+/* =========================================================
+   GAME LOOP
+========================================================= */
+
+function gameLoop(timestamp) {
+
+  if (!running)
+    return;
+
+
+  const delta =
+    timestamp - lastTime;
+
+
+  lastTime =
+    timestamp;
+
+
+  spawnTimer += delta;
+
+  enemyTimer += delta;
+
+
+  /* -----------------------------------
+     COLLECTIBLES
+  ----------------------------------- */
+
+  const collectibleDelay =
+    Math.max(
+      380,
+      760 -
+      score / 20
+    );
+
+
+  if (
+    spawnTimer >
+    collectibleDelay
+  ) {
+
+    spawnTimer = 0;
+
+
+    createCollectible(
+
+      Math.random() > 0.80
+        ? "sol"
+        : "goji"
+
+    );
+
+  }
+
+
+  /* -----------------------------------
+     ENEMIES
+  ----------------------------------- */
+
+  const enemyDelay =
+    Math.max(
+      420,
+      1250 -
+      score / 7
+    );
+
+
+  if (
+    enemyTimer >
+    enemyDelay
+  ) {
+
+    enemyTimer = 0;
+
+
+    createEnemy();
+
+
+    /*
+       Additional enemies
+       appear as the score rises.
+    */
+
+    if (
+      score > 800 &&
+      Math.random() > 0.5
+    ) {
+
+      setTimeout(
+        createEnemy,
+        180
+      );
+
+    }
+
+
+    if (
+      score > 2500 &&
+      Math.random() > 0.65
+    ) {
+
+      setTimeout(
+        createEnemy,
+        350
+      );
+
+    }
+
+  }
+
+
+  /* -----------------------------------
+     MOVE OBJECTS
+  ----------------------------------- */
+
+  for (
+    let i = objects.length - 1;
+    i >= 0;
+    i--
+  ) {
+
+    const obj =
+      objects[i];
+
+
+    obj.y +=
+      speed *
+      (delta / 16);
+
+
+    obj.element.style.top =
+      obj.y + "px";
+
+
+    /* ---------------------------------
+       COLLISION
+    --------------------------------- */
+
+    if (
+      collision(
+        player,
+        obj.element
+      )
+    ) {
+
+
+      if (
+        obj.type ===
+        "collectible"
+      ) {
+
+        addScore(
+          obj.value
+        );
+
+
+        obj.element.remove();
+
+
+        objects.splice(
+          i,
+          1
+        );
+
+
+        continue;
+
+      }
+
+
+      else {
+
+        endGame();
+
+        return;
+
+      }
+
+    }
+
+
+    /* ---------------------------------
+       REMOVE OBJECT
+    --------------------------------- */
+
+    if (
+      obj.y >
+      window.innerHeight + 100
+    ) {
+
+      obj.element.remove();
+
+
+      objects.splice(
+        i,
+        1
+      );
+
+    }
+
+  }
+
+
+  requestAnimationFrame(
+    gameLoop
+  );
+
+}
+
+
+/* =========================================================
+   GAME OVER
+========================================================= */
+
+function endGame() {
+
+  running = false;
+
+
+  finalScore.textContent =
+    score;
+
+
+  gameover.classList.add(
+    "active"
+  );
+
+}
+
+
+/* =========================================================
+   RESTART
+========================================================= */
+
+function restartGame() {
+
+
+  objects.forEach(
+    obj => {
+
+      if (
+        obj.element
+      ) {
+
+        obj.element.remove();
+
+      }
+
+    }
+  );
+
+
+  objects = [];
+
+
+  score = 0;
+
+  speed = 2;
+
+  combo = 0;
+
+
+  scoreElement.textContent =
+    "000000";
+
+
+  gameover.classList.remove(
+    "active"
+  );
+
+
+  playerX =
+    window.innerWidth / 2 -
+    player.offsetWidth / 2;
+
+
+  playerY =
+    window.innerHeight - 165;
+
+
+  updatePlayer();
+
+
+  running = true;
+
+
+  lastTime =
+    performance.now();
+
+
+  spawnTimer = 0;
+
+  enemyTimer = 0;
+
+
+  requestAnimationFrame(
+    gameLoop
+  );
+
+}
+
+
+/* =========================================================
+   START GAME
+========================================================= */
+
+createPlayer();
+
+
+lastTime =
+  performance.now();
+
+
+requestAnimationFrame(
+  gameLoop
+);
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+
+  "resize",
+
+  function() {
+
+    if (!player)
+      return;
+
+
+    playerX =
+      Math.min(
+        playerX,
+        window.innerWidth -
+          player.offsetWidth -
+          5
+      );
+
+
+    playerY =
+      Math.min(
+        playerY,
+        window.innerHeight -
+          player.offsetHeight -
+          70
+      );
+
+
+    updatePlayer();
+
+  }
+
+);
+
+</script>
+
+</body>
+</html>
